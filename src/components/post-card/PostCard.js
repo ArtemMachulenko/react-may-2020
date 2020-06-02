@@ -93,7 +93,11 @@ export class PostCard extends PureComponent {
   // }
 
   render() {
-    // console.log('PostCard render');
+
+    //==============================
+    console.log('PostCard render'); // СРАБАТЫВАЕТ 3 РАЗА ?!!
+    //==============================
+
 
     const { post, hasImage, author = '', className = '' } = this.props;
     const { title, body } = post;
@@ -146,14 +150,15 @@ export class PostCard extends PureComponent {
             //   и идет загрузка комментариев, т.е. isCommentsLoading = true
             // показываем лоадинг индикатор (можно просто строку с надписью "Loading comments ..." в div)
           }
-            {
+          {
             showComments &&
             isCommentsLoading &&
             <div>
-                <div>Loading comments ...</div>
-                {/*<Loader/>*/}
+              <div>Loading comments ...</div>
+              {/*<Loader/>*/}
             </div>
-            }
+          }
+
           {
             //donetodo если секция комментариев открыта, т.е. showComments = true
             //   но НЕ идет загрузка комментариев, т.е. isCommentsLoading = false

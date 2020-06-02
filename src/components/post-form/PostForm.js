@@ -73,6 +73,8 @@ class PostForm extends Component {
       user_id
     };
 
+    if (!title.trim() || !body.trim()) return;
+
     onAddPost && onAddPost(newPost);
 
     // dtodo 2: добавить очистку формы с помощью вызова функции onReset

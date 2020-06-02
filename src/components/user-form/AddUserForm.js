@@ -44,6 +44,8 @@ class AddUserForm extends Component {
         address
       };
 
+      if (!first_name.trim() || !last_name.trim() || !email.trim() || !address.trim()) return;
+
       onUserAdd && onUserAdd(newUser);
       // dtodo 3: зачистить форму, вызвав функцию onReset
       this.onReset();
