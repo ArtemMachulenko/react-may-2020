@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import './AddPostForm.scss';
 
 class PostForm extends Component {
@@ -54,6 +53,10 @@ class PostForm extends Component {
   // dtodo 2: добавить функцию onReset которая будет очищать форму
   //  подумайте как лучше сделать зачистку данных, если они хранятся  в стейте
   onReset = () => {
+    const {title, body, user_id} = this.state;
+
+    if (!title && !body && (this.props.users[1].id === user_id)) return;
+
     this.setState ({
       title: '',
       body: '',
@@ -89,17 +92,20 @@ class PostForm extends Component {
     const selectedFullName = `${selectedUser.first_name} ${selectedUser.last_name}`;
 
     return (
-      <select value={selectedFullName} onChange={this.onUserSelect}>
-        {
-          users.map(user => {
-            const fullName = `${user.first_name} ${user.last_name}`;
+      <div>
+        <div><label>Author:</label></div>
+        <select value={selectedFullName} onChange={this.onUserSelect}>
+          {
+            users.map(user => {
+              const fullName = `${user.first_name} ${user.last_name}`;
 
-            return (
-              <option key={user.id} value={fullName}>{fullName}</option>
-            );
-          })
-        }
-      </select>
+              return (
+                  <option key={user.id} value={fullName}>{fullName}</option>
+              );
+            })
+          }
+        </select>
+      </div>
     );
   };
 
@@ -112,7 +118,7 @@ class PostForm extends Component {
         {!!warning && <div>{warning}</div>}
 
         <div className="form-group">
-          <label htmlFor="formGroupExampleInput">Example label</label>
+          <label htmlFor="formGroupExampleInput">Title</label>
           <input
             type="text"
             className="form-control"
@@ -123,7 +129,7 @@ class PostForm extends Component {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="formGroupExampleInput">Example label</label>
+          <label htmlFor="formGroupExampleInput">Body</label>
           <textarea
             className="form-control"
             id="formGroupExampleInput"
