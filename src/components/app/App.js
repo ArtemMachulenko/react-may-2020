@@ -128,7 +128,7 @@ class App extends Component {
               options={sortingOptions}
             />
           </div>
-
+          
           <div className="d-flex posts-container">
             <AddPostForm onAddPost={this.addPost} users={users} />
             {
